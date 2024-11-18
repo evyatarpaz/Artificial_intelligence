@@ -47,7 +47,7 @@ problem2 = ((3, 3, 1, 4, 2, 4, 4, 1, 2, 4, 3), (2, 2, 2, 2, 4, 4, 1, 3))
 
 def main():
     problem = problem1
-    algorithm = "gbfs"  # or "astar"
+    algorithm = "astar" #"gbfs"  # or "astar"
 
     solve_problems(problem, algorithm)
 
