@@ -27,7 +27,7 @@ def solve_problems(problem, algorithm):
         return None
 
     if algorithm == "gbfs":
-        result = run_problem((lambda p: search.breadth_first_graph_search(p)), targs=[p])
+        result = run_problem((lambda p: search.greedy_best_first_graph_search(p, p.h)),targs=[p])
     else:
         result = run_problem((lambda p: search.astar_search(p, p.h)), targs=[p])
 
@@ -47,7 +47,7 @@ problem2 = ((3, 3, 1, 4, 2, 4, 4, 1, 2, 4, 3), (2, 2, 2, 2, 4, 4, 1, 3))
 
 def main():
     problem = problem1
-    algorithm = "astar" #"gbfs"  # or "astar"
+    algorithm = "gbfs"  # or "astar"
 
     solve_problems(problem, algorithm)
 
