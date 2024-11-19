@@ -90,24 +90,13 @@ class ZumaProblem(search.Problem):
         if not line:
             return 0
         
-        heuristic = len(line) * 3
-
+        heuristic = len(line)
+        group = 0
         for i in range(len(line) - 1):
             if line[i] == line[i + 1]:
-                heuristic -= 2
-        
-        for ball in ammo:
-            if ball in line:
-                heuristic -= 1
-        skip_count = 0
-        for ball in ammo:
-            if ball not in line:
-                skip_count += 1
-            else:
-                break
-        heuristic -= skip_count
+                group += 1
+        heuristic = (heuristic - group) / len(line)
         return heuristic
-
 
 def create_zuma_problem(game):
     print("<<create_zuma_problem")
