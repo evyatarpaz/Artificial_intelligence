@@ -1,5 +1,5 @@
 import re
-
+import ex1_check
 import search
 import utils
 
@@ -30,25 +30,26 @@ class ZumaProblem(search.Problem):
     def successor(self, state):
         """ Generates the successor state """
         succ = []
-
-        # state = (line, ammo)
+        seen = set()
         stateLine, stateAmmo = state
 
-        # if no ammo, return an empty successor list
         if not stateAmmo:
             return succ
         
         # get the first ball from the ammo
         ball = stateAmmo[0]
 
-        # try to insert the ball in all possible places
+        # place the ball in all possible places
         for i in range(len(stateLine) + 1):
             newLine = stateLine[:i] + (ball,) + stateLine[i:]
             newAmmo = stateAmmo[1:]
             newLine = self.remove_three_balls(newLine)
-            succ.append((f"Insert {ball} at {i}", (newLine, newAmmo)))
-        
-        # try to skip the ball
+
+            # if we haven't seen this state before, add it to the successors
+            if (newLine, newAmmo) not in seen:
+                seen.add((newLine, newAmmo))
+                succ.append((f"Insert {ball} at {i}", (newLine, newAmmo)))
+
         newAmmo = stateAmmo[1:]
         succ.append((f"Skip {ball}", (stateLine, newAmmo)))
         return succ
@@ -90,11 +91,15 @@ class ZumaProblem(search.Problem):
         if not line:
             return 0
         
+        
         heuristic = len(line)
+        
         group = 0
         for i in range(len(line) - 1):
             if line[i] == line[i + 1]:
                 group += 1
+
+        
         heuristic = (heuristic - group) / len(line)
         return heuristic
 
@@ -104,8 +109,5 @@ def create_zuma_problem(game):
     game - pair of lists as described in pdf file"""
     return ZumaProblem(game)
 
-
-# game = ((1, 1, 2, 2, 3, 3, 4, 4, 3, 3, 2, 2, 1, 1), (1, 2, 3, 4, 1, 2, 3, 4))
-
-
-# create_zuma_problem(game)
+if __name__ == '__main__':
+    ex1_check.main()

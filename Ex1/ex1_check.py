@@ -1,5 +1,6 @@
 import ex1
 import search
+import time
 
 
 def run_problem(func, targs=(), kwargs=None):
@@ -25,7 +26,8 @@ def solve_problems(problem, algorithm):
     except Exception as e:
         print("Error creating problem: ", e)
         return None
-
+    if algorithm == "bfs":
+        result = run_problem((lambda p: search.breadth_first_graph_search(p)), targs=[p])
     if algorithm == "gbfs":
         result = run_problem((lambda p: search.greedy_best_first_graph_search(p, p.h)),targs=[p])
     else:
@@ -43,13 +45,16 @@ problem1 = ((1, 1, 2, 2, 3, 3, 4, 4, 3, 3, 2, 2, 1, 1), (1, 2, 3, 4, 1, 2, 3, 4)
 # solution1: len(solution) = 4
 problem2 = ((3, 3, 1, 4, 2, 4, 4, 1, 2, 4, 3), (2, 2, 2, 2, 4, 4, 1, 3))
 # solution2: len(solution) = 7
-
+problem3 = ((1,1,2,2,1,1,3,3,4,4,3,1,1), (2,4,3,1,2,4,1,3))
 
 def main():
-    problem = problem1
+    problem = problem2
     algorithm = "astar" #"gbfs"  # or "astar"
 
+    start_time = time.time()
     solve_problems(problem, algorithm)
+    end_time = time.time() 
+    print("Time: ", end_time - start_time)
 
 
 if __name__ == '__main__':
