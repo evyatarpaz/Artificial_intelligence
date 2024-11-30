@@ -41,21 +41,64 @@ def solve_problems(problem, algorithm):
         print("no solution")
 
 
-problem1 = ((1, 1, 2, 2, 3, 3, 4, 4, 3, 3, 2, 2, 1, 1), (1, 2, 3, 4, 1, 2, 3, 4))
-# solution1: len(solution) = 4
-problem2 = ((3, 3, 1, 4, 2, 4, 4, 1, 2, 4, 3), (2, 2, 2, 2, 4, 4, 1, 3))
-# solution2: len(solution) = 7
-problem3 = ((1,1,2,2,1,1,3,3,4,4,3,1,1), (2,4,3,1,2,4,1,3))
+# problem1 = ((1, 1, 2, 2, 3, 3, 4, 4, 3, 3, 2, 2, 1, 1), (1, 2, 3, 4, 1, 2, 3, 4))
+# # solution1: len(solution) = 4
+# problem2 = ((3, 3, 1, 4, 2, 4, 4, 1, 2, 4, 3), (2, 2, 2, 2, 4, 4, 1, 3))
+# # solution2: len(solution) = 7
 
+# problem3 = ((1, 1, 2, 2, 1, 1, 3, 3, 4, 4, 3, 1, 1),(2, 4, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,3,3,3,3,1))
+problem1 = ((1, 1), (1,))
+problem2 = ((1, 2, 2, 1, 1), (2, 1))
+problem3 = ((1, 2, 3, 3, 2, 2, 1, 1), (3,))
+problem4 = ((2, 2, 3, 2), (3, 3))
+problem5 = ((2, 2, 3, 2), (3, 3, 2, 1, 2, 2, 4))
+problem6 = ((2, 2, 3, 3, 2), (1, 3))
+problem7 = ((3, 3, 4, 4, 3, 3), (3, 4))
+problem8 = ((1, 1, 2, 2, 1, 1, 3, 3, 4, 4, 3, 1, 1), (2, 4, 3, 3, 3, 1))
+problem9 = ((2, 3, 3, 2), (1, 2, 3))
+problem10 = ((4, 1, 2, 3, 3, 2, 2, 1, 1), (4, 3, 4))
+problem11 = ((1, 1, 3, 3, 2, 2, 3, 3, 2, 2, 3, 3, 2, 4, 1, 1, 4, 3, 3, 2, 2, 3, 3, 1, 1), (3, 4, 1, 2, 3, 4))
+problem12 = ((2, 2, 3, 3, 1), (1, 1, 2, 3))
+problem13 = ((4, 2, 2, 3, 3, 2), (1, 3, 4, 4))
+problem14 = ((1, 1, 2, 2, 3, 3, 4, 4, 3, 3, 2, 2, 1, 1), (1, 2, 3, 4))
+problem15 = ((1, 1, 2, 2, 3, 3, 4, 4, 3, 3, 2, 2, 1, 1), (1, 2, 3, 4, 1, 2, 3, 4))
+problem16 = ((1, 1, 2, 2, 3, 3, 4, 4, 3, 3, 2, 2, 1, 1, 2, 2), (1, 2, 3, 4, 1, 2))
+problem17 = ((1, 1, 3, 3, 2, 2, 3, 3, 4, 4, 3, 3, 2, 2, 3, 3, 1, 1), (1, 2, 3, 4, 1, 2, 3, 4))
+problem18 = ((2, 2, 3, 3, 1), (4, 1, 1, 2, 3))
+problem19 = ((1, 2, 2, 1, 1, 3, 3, 1), (4, 2, 3, 4, 4, 3, 2, 3, 2, 2, 3, 1, 1))
+problem20 = ((1, 1, 2, 4, 1, 1, 4, 3, 3, 2, 2, 3, 3, 1, 1), (3, 4, 1, 2, 3, 4))
+problem21 = ((1, 1, 3, 3, 4, 4, 3, 3, 2, 2, 1, 1, 2, 2), (1, 2, 3, 4, 2, 3, 4))
+problem22 = ((1, 1, 3, 3, 4, 4, 3, 3, 2, 2, 1, 1, 2, 2), (1, 2, 3, 4, 1, 3))
+problem23 = ((3, 3, 4, 4, 3, 3), (3, 1, 2, 3, 2, 1, 4))
+problem24 = ((1, 3, 3, 2, 1, 2, 2), (1, 3, 2, 4, 2, 3, 2))
+problem25 = ((3, 3, 1, 4, 2, 4, 4, 1, 2, 4, 3), (2, 2, 2, 2, 4, 4, 1, 3))
+problem26 = ((1, 3, 3, 2, 1, 2, 2), (1, 3, 2, 4, 2, 3, 4, 2))
+problem27 = ((1, 2, 1, 2), (1, 2, 4, 1, 2, 2, 4, 1, 3, 2, 1, 2))
+problem28 = ((2, 2, 3, 2), (3, 1))
+problem29 = ((4, 2, 2, 3, 3, 2), (1, 3))
+problem30 = ((2, 2, 3, 3, 2, 4), (2, 2, 3, 2))
+problem31 = ((4, 2, 2, 3, 3, 2), (1, 3, 4))
+problem32 = ((4, 2, 2, 3, 3, 1), (1, 1, 2, 3))
+problem33 = ((1, 2, 2, 1, 1, 3, 3, 1), (4, 2, 3, 4, 4, 2, 1))
+problem34 = ((1, 1, 3, 3, 2, 2, 3, 1, 2, 3, 3, 2, 2, 3, 3, 1, 1), (3, 1, 2, 4, 3, 4, 3, 1))
+problem35 = ((1, 1, 3, 3, 2, 2, 3, 1, 4, 2, 3, 3, 2, 2, 3, 3, 1, 1), (3, 4, 1, 2, 4, 3, 4, 3, 1))
+problem36 = ((1, 1, 2, 2, 1, 1, 3, 3, 4, 4, 3, 1, 1), (3, 3, 3, 3, 3, 2, 4, 3, 3, 3, 1))
+problem37 = ((3, 3, 1, 1, 4, 3, 2, 4, 3, 3, 2, 4, 4, 1, 3), (4, 4, 2, 2, 3, 3, 3, 1, 3))
 def main():
-    problem = problem2
-    algorithm = "astar" #"gbfs"  # or "astar"
-
-    start_time = time.time()
-    solve_problems(problem, algorithm)
-    end_time = time.time() 
-    print("Time: ", end_time - start_time)
-
+    
+    algorithm = ["gbfs","astar"]  # or "astar"
+    problem = [problem1, problem2, problem3, problem4, problem5, problem6, problem7, problem8, problem9, problem10, problem11, problem12, problem13, problem14, problem15, problem16, problem17, problem18, problem19, problem20, problem21, problem22, problem23, problem24, problem25, problem26, problem27, problem28, problem29, problem30, problem31, problem32, problem33, problem34, problem35, problem36, problem37]
+    i = 1
+    for p in problem:
+        for a in algorithm:
+            print(f"Problem:{i}")
+            print("Algorithm: ", a)
+            start_time = time.time()
+            solve_problems(p, a)
+            end_time = time.time()
+            print("Time: ", end_time - start_time)
+            print("")
+        i += 1
 
 if __name__ == '__main__':
     main()
