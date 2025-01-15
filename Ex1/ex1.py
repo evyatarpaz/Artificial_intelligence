@@ -3,7 +3,6 @@ import ex1_check
 import search
 import utils
 
-ids = ["211788625"]
 
 """ Rules """
 RED = 1

@@ -2,7 +2,6 @@ import zuma
 import copy
 import random
 import re
-id = ["211788625"]
 
 class Controller:
     """This class is a controller for a Zuma game."""
