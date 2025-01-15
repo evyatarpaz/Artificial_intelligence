@@ -7,10 +7,10 @@ def solve(game: zuma.Game):
     print('Solving Zuma game:')
     for i in range(game.get_current_state()[3]):
         game.submit_next_action(chosen_action=policy.choose_next_action())
-        # print(game.get_current_reward())
     print('Game result:\n\tLine state ->', game.get_current_state()[0], '\n\tReward result->',
           game.get_current_reward())
     game.show_history()
+    return game.get_current_reward()
 
 
 example = {
@@ -18,7 +18,8 @@ example = {
     # 'chosen_action_prob': {1: 1, 2: 1, 3: 1, 4: 1},
     'next_color_dist': {1: 0.1, 2: 0.6, 3: 0.15, 4: 0.15},
     # 'next_color_dist': {1: 0.25, 2: 0.25, 3: 0.25, 4: 0.25},
-    'color_pop_prob': {1: 0.6, 2: 0.7, 3: 0.4, 4: 0.9},
+    # 'color_pop_prob': {1: 0.6, 2: 0.7, 3: 0.4, 4: 0.9},
+    'color_pop_prob': {1: 1, 2: 1, 3: 1, 4: 1},
     'color_pop_reward': {'3_pop': {1: 3, 2: 1, 3: 2, 4: 2},
                          'extra_pop': {1: 1, 2: 2, 3: 3, 4: 1}},
     'color_not_finished_punishment': {1: 2, 2: 3, 3: 5, 4: 1},
@@ -28,11 +29,22 @@ example = {
 
 def main():
     # debug_mode = False
-    debug_mode = True
+    debug_mode = False
     # game = zuma.create_zuma_game((200, [1, 2, 3, 3, 3, 4, 2, 1, 2, 3, 4, 4], example, debug_mode))
-    game = zuma.create_zuma_game((20,  [1, 2, 3, 3, 3, 4, 2, 1, 2, 3, 4, 4], example, debug_mode))
+    # game = zuma.create_zuma_game((20,  [1, 2, 3, 3, 3, 4, 2, 1, 2, 3, 4, 4], example, debug_mode))
     # game = zuma.create_zuma_game((20, [1, 1], example, debug_mode))
-    solve(game)
+    ressum = 0
+    res = 0
+    reslist = []
+    for i in range(42):
+        example['seed'] = i
+        game = zuma.create_zuma_game((200, [1, 2, 3, 3, 3, 4, 2, 1, 2, 3, 4, 4], example, debug_mode))
+        res = solve(game)
+        reslist.append(res)
+        ressum += res
+    for i in range(42):
+        print('Seed:', i, 'Result:', reslist[i])
+    print('\n\nAverage result:', ressum/42)
 
 
 if __name__ == "__main__":

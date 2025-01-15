@@ -86,15 +86,16 @@ class Game:
         new_reward = reward
         new_line = line.copy()
         for group in burstable:
-            if addition in range(group.span()[0], group.span()[1] + 1):
+            if addition in range(group.span()[0], group.span()[1]):
                 r_num = random.random()
                 if r_num < self._color_pop_prob[line[group.start()]]:
                     new_reward += (self._color_pop_reward['3_pop'][line[group.start()]] +
                                    (group.span()[1] - group.span()[0] - 3) *
                                    self._color_pop_reward['extra_pop'][line[group.start()]])
-                    new_line = line[:group.span()[0]] + line[group.span()[1] + 1:]
+                    new_line = line[:group.span()[0]] + line[group.span()[1]:]
                     if self._debug:
                         self._history[-1].append(f'removed color group {line[group.start()]} {group.span()}, prob: {r_num:1.4}, updated reward: {self._reward + new_reward}')
+                    addition = group.span()[0]
                 break
         if new_reward != reward:
             new_line, new_reward = self._remove_group(new_line, addition, new_reward)
@@ -124,17 +125,22 @@ class Game:
         """
         self.get_ball()
         r_num = random.random()
+        succ_fail = 0
         if r_num < self._chosen_action_prob[self._current_ball]:
             action = chosen_action
+            succ_fail = True
         else:
             action = random.choice([i for i in range(-1, len(self._line) + 1) if i != chosen_action])
+            succ_fail = False
         if self._debug:
             submit_result = list()
-            submit_result.append(f'step {self._steps}, added ball: {self._current_ball}, prob: {r_num:1.4}, index: {action}')
+            submit_result.append(f'step {self._steps}, added ball: {self._current_ball}, prob: {r_num:1.4}, index: {action} Success: {succ_fail}')
             self._history.append(submit_result)
         if action != -1:
             self._line.insert(action, self._current_ball)
+            # self._history.append([str(self._line)])
             self._line, add_reward = self._remove_group(self._line, action)
+            # self._history.append("after remove" + str(self._line))
             self._reward += add_reward
         self._steps += 1
         self._current_ball = None
@@ -151,12 +157,12 @@ class Game:
 
 
 def create_zuma_game(game):
-    print('--------DEBUG MODE--------')
-    print('<< create zuma game >>')
-    print('<maximize R on>', game[1])
-    print('in', game[0], 'steps')
-    print('under these conditions:')
-    pprint(game[2])
+    # print('--------DEBUG MODE--------')
+    # print('<< create zuma game >>')
+    # print('<maximize R on>', game[1])
+    # print('in', game[0], 'steps')
+    # print('under these conditions:')
+    # pprint(game[2])
     return Game(*game)
 
 
